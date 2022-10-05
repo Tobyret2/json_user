@@ -3,7 +3,7 @@ from random import randint
 from .models import User
 import requests
 
-NUM = 0
+NUM = len(User.objects.all())
 
 
 def add_user(request):
