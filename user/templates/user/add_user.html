@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+input[type=button], input[type=submit], input[type=reset] {
+  background-color: #04AA6D;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+</style>
+    <meta charset="UTF-8">
+    <title>Добавление пользователя</title>
+
+
+</head>
+<body><center>
+
+      <form action=" {%url 'add_user' %}" method='POST'>
+        {% csrf_token %}
+    <input type="submit" value="ADD_USER"  name="add">
+     <input type="submit" value="RESET"  name="reset">
+      </form>
+
+
+{%if all_user %} <h1>Список пользователей : </h1> {%endif%}
+{%for user in all_user%}
+<p><form action=" {{ user.get_absolute_url }}" method='POST'>
+        {% csrf_token %}
+    <input type="submit" value="{{user.username}}"  name="add"><p>
+{%endfor%}
+</form>
+</center></body>
+</html>

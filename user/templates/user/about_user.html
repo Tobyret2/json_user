@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+input[type=button], input[type=submit], input[type=reset] {
+  background-color: #04AA6D;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+</style>
+    <meta charset="UTF-8">
+    <title>Информация об {{user.username}}</title>
+
+</head>
+<body>
+<form action="{% url 'add_user' %}" method='POST'>
+        {% csrf_token %}
+    <input type="submit" value="НА ГЛАВНУЮ"  name="add">
+<center><h2>Имя: {{user.name}}</h2>
+<h2>Имя пользователя : {{user.username}}</h2>
+<h3>Телефон : {{user.phone}}</h3>
+<h3>Город : {{user.address}}</h3></center>
+
+
+</body>
+</html>
