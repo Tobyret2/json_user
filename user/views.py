@@ -25,12 +25,18 @@ def add_user(request):
         elif request.POST.getlist('reset'):
             User.objects.all().delete()
             NUM = 0
-    all_user = User.objects.all()
+    show_add_button = NUM < len(jsd)
 
-    return render(request, 'user/add_user.html', {'all_user': all_user})
+    return render(request, 'user/add_user.html', {'show_add_button': show_add_button})
 
 
 def about_user(request, user_slug):
     user = User.objects.get(slug=user_slug)
 
     return render(request, 'user/about_user.html', {'user': user})
+
+
+def all_users(request):
+    all_user = User.objects.all()
+
+    return render(request, 'user/all_user.html', {'all_user': all_user})

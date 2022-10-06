@@ -13,21 +13,20 @@
         }
     </style>
     <meta charset="UTF-8">
-    <title>Информация об {{ user.username }}</title>
-
+    <title>Title</title>
 </head>
 <body>
 <form action="{% url 'add_user' %}" method='POST'>
     {% csrf_token %}
     <input type="submit" value="MAIN" name="add"></form>
-<form action="{% url 'all_users' %}" method='POST'>
-    {% csrf_token %}
-    <input type="submit" value="SHOW ALL USERS" name="add"></form>
 
-<center><h2>Имя: {{ user.name }}</h2>
-    <h2>Имя пользователя : {{ user.username }}</h2>
-    <h3>Телефон : {{ user.phone }}</h3>
-    <h3>Город : {{ user.address }}</h3></center>
+<center>
+{% if all_user %} <h1>Список пользователей : </h1> {% endif %}
+{% for user in all_user %}
+    <form action=" {{ user.get_absolute_url }}" method='POST'>
+        {% csrf_token %}
+        <input type="submit" value="{{ user.username }}" name={{ user.pk }}></form>
 
-</body>
+{% endfor %}
+</center></body>
 </html>

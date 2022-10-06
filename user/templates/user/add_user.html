@@ -20,20 +20,25 @@
 <body>
 <center>
 
-    <form action=" {% url 'add_user' %}" method='POST'>
+    {% if show_add_button %}
+        <form action=" {% url 'add_user' %}" method='POST'>
+            {% csrf_token %}
+            <input type="submit" value="ADD USER" name="add">
+            <input type="submit" value="RESET" name="reset">
+        </form>
+    {% else %}
+        <h3>All users added </h3>
+        <form action=" {% url 'add_user' %}" method='POST'>
+            {% csrf_token %}
+            <input type="submit" value="RESET" name="reset">
+        </form>
+    {% endif %}
+
+    <form action=" {% url 'all_users' %}" method='POST' target="_blank">
         {% csrf_token %}
-        <input type="submit" value="ADD_USER" name="add">
-        <input type="submit" value="RESET" name="reset">
+        <input type="submit" value="SHOW ALL USERS" name="add">
     </form>
 
-
-    {% if all_user %} <h1>Список пользователей : </h1> {% endif %}
-    {% for user in all_user %}
-        <form action=" {{ user.get_absolute_url }}" method='POST'>
-            {% csrf_token %}
-            <input type="submit" value="{{ user.username }}" name={{ user.pk }}></form>
-
-    {% endfor %}
 </center>
 </body>
 </html>
