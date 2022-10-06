@@ -31,7 +31,7 @@
     {% for user in all_user %}
         <form action=" {{ user.get_absolute_url }}" method='POST'>
             {% csrf_token %}
-            <input type="submit" value="{{ user.get_absolute_url }}" name={{ user.pk }}></form>
+            <input type="submit" value="{{ user.username }}" name={{ user.pk }}></form>
 
     {% endfor %}
 </center>
