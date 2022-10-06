@@ -1,16 +1,17 @@
 from django.shortcuts import render
-from random import randint
 from .models import User
 import requests
 
-NUM = len(User.objects.all())
+try:
+    NUM = len(User.objects.all())
+except:
+    pass
 
 
 def add_user(request):
     url = 'https://jsonplaceholder.typicode.com/users'
     jsd = requests.get(url).json()
     global NUM
-    print(NUM)
     if request.method == 'POST':
 
         if request.POST.getlist('add') and NUM < len(jsd):
